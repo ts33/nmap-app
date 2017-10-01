@@ -7,7 +7,7 @@ from . import utils
 class TestDbHelper(unittest.TestCase):
 
     def setUp(self):
-        self.db_helper = db_helper.DbHelper()
+        self.db_helper = db_helper.DbHelper(host=utils.HOST)
         self.content = '<xml>some content</xml>'
         self.open = True
 
@@ -43,7 +43,8 @@ class TestDbHelper(unittest.TestCase):
 
         def callback(ch, method, properties, body):
             self.assertEqual(body.decode('utf-8'), self.content)
-            channel.stop_consuming()
+            ch.stop_consuming()
+            ch.close()
 
         # setup new connection and consumer
         channel = utils.setup_rabbit_channel(self)

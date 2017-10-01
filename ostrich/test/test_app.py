@@ -8,9 +8,9 @@ from .. import db_helper
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        self.db_helper = db_helper.DbHelper()
+        self.db_helper = db_helper.DbHelper(host=utils.HOST)
         self.content = '<xml>some content</xml>'
-        self.base_url = 'http://127.0.0.1:6001/'
+        self.base_url = f'http://{utils.HOST}:6001/'
 
     def test_health(self):
         r = requests.get(self.base_url + 'health')
@@ -23,8 +23,10 @@ class TestApp(unittest.TestCase):
     def test_add_entry(self):
 
         def callback(ch, method, properties, body):
+            print('inside the callback')
             self.assertEqual(body.decode('utf-8'), self.content)
-            channel.stop_consuming()
+            ch.stop_consuming()
+            ch.close()
 
         # setup rabbitmq channel
         channel = utils.setup_rabbit_channel(self)
@@ -41,13 +43,14 @@ class TestApp(unittest.TestCase):
         self.assertEqual(r.text, 'record added')
         self.assertEqual(r.status_code, 200)
 
+        # trigger consumer to check rabbitmq
+        channel.start_consuming()
+
         # check redis
         self.assertEqual(redis_db.get('test').decode('utf-8'), self.content)
         # check postgres
         results = pg_db.query('select * from scans').getresult()
         self.assertEqual(results[0][1], self.content)
-        # trigger consumer to check rabbitmq
-        channel.start_consuming()
 
         utils.clean_up_redis(redis_db)
         utils.clean_up_postgres(pg_db)
