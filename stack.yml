@@ -1,42 +1,24 @@
-version: "3"
+version: '3'
 
 
 services:
 
-  owl:
-    image: nmap-app-owl
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    ports:
-      - "5001:5001"
-
-  ostrich:
-    image: nmap-app-ostrich
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    ports:
-      - "6001:6001"
-
   db_pg:
     image: postgres:9.3.6
     environment:
-      POSTGRES_PASSWORD: "example"
-      POSTGRES_USER: "golang"
-      POSTGRES_DB: "golang"
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - ./data/postgres:/var/lib/postgresql
 
   db_redis:
     image: redis:4.0.2-alpine
     ports:
-      - "6379:6379"
-    command: redis-server --requirepass redis
+      - '6379:6379'
+    command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes:
       - ./data/redis:/data
 
@@ -44,10 +26,44 @@ services:
     image: rabbitmq:3.6-management-alpine
     environment:
       RABBITMQ_VM_MEMORY_HIGH_WATERMARK: 0.6
-      RABBITMQ_ERLANG_COOKIE: "erlangcookie"
-      RABBITMQ_DEFAULT_USER: "rabbituser"
-      RABBITMQ_DEFAULT_PASS: "rabbitpassword"
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
     ports:
-      - "15672:15672"
+      - '15672:15672'
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq
+
+  owl:
+    image: nmap-app-owl
+    ports:
+      - '5001:5001'
+    depends_on:
+      - db_pg
+      - db_redis
+      - db_rabbit
+
+  ostrich:
+    image: nmap-app-ostrich
+    ports:
+      - '6001:6001'
+    depends_on:
+      - db_pg
+      - db_redis
+      - db_rabbit
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+      RABBIT_HOST: ${RABBIT_HOST}
+      RABBIT_PORT: ${RABBIT_PORT}
+      RABBIT_QUEUE: ${RABBIT_QUEUE}
+      RABBIT_USERNAME: ${RABBIT_USERNAME}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_DB: ${REDIS_DB}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}

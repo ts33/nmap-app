@@ -1,0 +1,19 @@
+export POSTGRES_HOST="db_pg"
+export POSTGRES_PORT=5432
+export POSTGRES_DB='nmap_scan'
+export POSTGRES_USERNAME='nmap_app'
+export POSTGRES_PASSWORD='pg_password'
+
+export RABBIT_HOST="db_rabbit"
+export RABBIT_PORT=5672
+export RABBIT_QUEUE='nmap_scan_queue'
+export RABBIT_USERNAME='rabbituser'
+export RABBIT_PASSWORD='rabbitpassword'
+export RABBIT_ERLANG_COOKIE='erlangcookie'
+
+export REDIS_HOST="db_redis"
+export REDIS_PORT=6379
+export REDIS_DB=0
+export REDIS_PASSWORD='redis'
+
+export FLASK_APP=app.py
