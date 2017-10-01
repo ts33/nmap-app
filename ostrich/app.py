@@ -1,5 +1,5 @@
-from flask import Flask
-from . import db_helper
+from flask import Flask, g, request
+from .db_helper import DbHelper
 
 app = Flask(__name__)
 
@@ -11,16 +11,26 @@ def health():
 
 @app.route('/add', methods=['POST'])
 def add_entry():
-    db_helper.save_to_db('hi')
-    return 'record added'
+    json_data = request.get_json()
+
+    if json_data is not None:
+        content = json_data['content']
+        key = json_data['key']
+        get_db().save_to_db(content, key=key)
+        return 'record added'
+    else:
+        return 'no data provided'
 
 
 @app.teardown_appcontext
 def teardown_db(exception):
     if exception:
         print(exception)
-    db_helper.teardown_all_db()
+    get_db().teardown_all_db()
 
 
-with app.app_context():
-    db_helper.setup_all_db()
+def get_db():
+    db = getattr(g, '_db_helper', None)
+    if db is None:
+        db = g._db_helper = DbHelper()
+    return db
