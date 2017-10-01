@@ -33,19 +33,11 @@ services:
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq
 
-  owl:
-    image: nmap-app-owl
-    ports:
-      - '5001:5001'
-    depends_on:
-      - db_pg
-      - db_redis
-      - db_rabbit
-
   ostrich:
     image: nmap-app-ostrich
     ports:
-      - '6001:6001'
+      - '${OSTRICH_PORT}:${OSTRICH_PORT}'
+    command: flask run -p ${OSTRICH_PORT} --host=0.0.0.0
     depends_on:
       - db_pg
       - db_redis
@@ -67,3 +59,18 @@ services:
       REDIS_PORT: ${REDIS_PORT}
       REDIS_DB: ${REDIS_DB}
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+  owl:
+    image: nmap-app-owl
+    ports:
+      - '${OWL_PORT}:${OWL_PORT}'
+    command: flask run -p ${OWL_PORT} --host=0.0.0.0
+    depends_on:
+      - db_pg
+      - db_redis
+      - db_rabbit
+      - ostrich
+    environment:
+      OSTRICH_HOST: ${OSTRICH_HOST}
+      OSTRICH_PORT: ${OSTRICH_PORT}
+      OWL_TARGET_FILE: ${OWL_TARGET_FILE}

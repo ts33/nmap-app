@@ -16,4 +16,11 @@ export REDIS_PORT=6379
 export REDIS_DB=0
 export REDIS_PASSWORD='redis'
 
+export OWL_HOST="owl"
+export OWL_PORT=5001
+export OWL_TARGET_FILE="target_sites.txt"
+
+export OSTRICH_HOST="ostrich"
+export OSTRICH_PORT=6001
+
 export FLASK_APP=app.py
