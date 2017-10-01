@@ -1,0 +1,57 @@
+import unittest
+import requests
+from . import utils
+from .. import db_helper
+
+
+# these tests should be run when the stack is created
+class TestApp(unittest.TestCase):
+
+    def setUp(self):
+        self.db_helper = db_helper.DbHelper()
+        self.content = '<xml>some content</xml>'
+        self.base_url = 'http://127.0.0.1:6001/'
+
+    def test_health(self):
+        r = requests.get(self.base_url + 'health')
+        self.assertEqual(r.text, 'Thank you, I am healthy')
+
+    def test_add_entry_fail(self):
+        r = requests.post(self.base_url + 'add', data='just a string')
+        self.assertEqual(r.text, 'no data provided')
+
+    def test_add_entry(self):
+
+        def callback(ch, method, properties, body):
+            self.assertEqual(body.decode('utf-8'), self.content)
+            channel.stop_consuming()
+
+        # setup rabbitmq channel
+        channel = utils.setup_rabbit_channel(self)
+        channel.basic_consume(callback, queue=db_helper.RABBIT_QUEUE, no_ack=True)
+
+        redis_db = self.db_helper._redis_conn
+        pg_db = self.db_helper._postgres_conn
+
+        utils.clean_up_redis(redis_db)
+        utils.clean_up_postgres(pg_db)
+
+        # trigger request
+        r = requests.post(self.base_url + 'add', json={'content': self.content, 'key': 'test'})
+        self.assertEqual(r.text, 'record added')
+        self.assertEqual(r.status_code, 200)
+
+        # check redis
+        self.assertEqual(redis_db.get('test').decode('utf-8'), self.content)
+        # check postgres
+        results = pg_db.query('select * from scans').getresult()
+        self.assertEqual(results[0][1], self.content)
+        # trigger consumer to check rabbitmq
+        channel.start_consuming()
+
+        utils.clean_up_redis(redis_db)
+        utils.clean_up_postgres(pg_db)
+
+
+if __name__ == '__main__':
+    unittest.main()
