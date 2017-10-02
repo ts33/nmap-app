@@ -30,12 +30,10 @@ class DbHelper:
             self._POSTGRES_HOST = host
             self._RABBIT_HOST = host
             self._REDIS_HOST = host
-            self._RABBIT_CREDENTIALS = None
         else:
             self._POSTGRES_HOST = POSTGRES_HOST
             self._RABBIT_HOST = RABBIT_HOST
             self._REDIS_HOST = REDIS_HOST
-            self._RABBIT_CREDENTIALS = pika.PlainCredentials(RABBIT_USERNAME, RABBIT_PASSWORD)
 
         self._postgres_conn = self._connect_to_postgres()
         self._rabbit_conn = self._connect_to_rabbit()
@@ -49,11 +47,9 @@ class DbHelper:
         return db
 
     def _connect_to_rabbit(self):
-        if self._RABBIT_CREDENTIALS is None:
-            connection = pika.BlockingConnection(pika.ConnectionParameters(host=self._RABBIT_HOST))
-        else:
-            connection = pika.BlockingConnection(
-                pika.ConnectionParameters(host=self._RABBIT_HOST, credentials=self._RABBIT_CREDENTIALS))
+        connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host=self._RABBIT_HOST,
+                                      credentials=pika.PlainCredentials(RABBIT_USERNAME, RABBIT_PASSWORD)))
         return connection.channel()
 
     def _connect_to_redis(self):

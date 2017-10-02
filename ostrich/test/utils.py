@@ -19,7 +19,11 @@ def setup_rabbit_channel(unittest):
         unittest.fail('consumer timed out while waiting for message')
 
     # setup new connection and consumer
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=HOST))
+    connection = pika.BlockingConnection(
+        pika.ConnectionParameters(
+            host=HOST,
+            credentials=pika.PlainCredentials(db_helper.RABBIT_USERNAME, db_helper.RABBIT_PASSWORD)
+        ))
     connection.add_timeout(3, timeout)
     channel = connection.channel()
     channel.queue_declare(queue=db_helper.RABBIT_QUEUE)

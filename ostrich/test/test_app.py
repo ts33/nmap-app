@@ -4,7 +4,7 @@ from . import utils
 from .. import db_helper
 
 
-# these tests should be run when the stack is created
+# these tests should be run when the stack is created without owl
 class TestApp(unittest.TestCase):
 
     def setUp(self):

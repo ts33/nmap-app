@@ -3,7 +3,7 @@ from .. import db_helper
 from . import utils
 
 
-# these tests should be run when the stack is created
+# these tests should be run when the stack is created without owl
 class TestDbHelper(unittest.TestCase):
 
     def setUp(self):
