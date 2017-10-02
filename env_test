@@ -20,7 +20,7 @@ export REDIS_PASSWORD='redis'
 
 export OWL_HOST="127.0.0.1"
 export OWL_PORT=5001
-export OWL_TARGET_FILE="target1.txt"
+export OWL_TARGET_FILE="target_sites.txt"
 
 export OSTRICH_HOST="127.0.0.1"
 export OSTRICH_PORT=6001
