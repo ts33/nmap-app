@@ -10,14 +10,14 @@ services:
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - '5432:5432'
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
     volumes:
       - ./data/postgres/data:/var/lib/postgresql/data
 
   db_redis:
     image: redis:4.0.2-alpine
     ports:
-      - '6379:6379'
+      - '${REDIS_PORT}:${REDIS_PORT}'
     command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
     volumes:
       - ./data/redis:/data
@@ -30,8 +30,8 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBIT_USERNAME}
       RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
     ports:
-      - '15672:15672'
-      - '5672:5672'
+      - '${RABBIT_ADMIN_PORT}:${RABBIT_ADMIN_PORT}'
+      - '${RABBIT_PORT}:${RABBIT_PORT}'
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq
 

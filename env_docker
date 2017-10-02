@@ -6,6 +6,7 @@ export POSTGRES_PASSWORD='pg_password'
 
 export RABBIT_HOST="db_rabbit"
 export RABBIT_PORT=5672
+export RABBIT_ADMIN_PORT=15672
 export RABBIT_QUEUE='nmap_scan_queue'
 export RABBIT_USERNAME='rabbituser'
 export RABBIT_PASSWORD='rabbitpassword'
