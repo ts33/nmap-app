@@ -10,6 +10,8 @@ export RABBIT_QUEUE='nmap_scan_queue'
 export RABBIT_USERNAME='rabbituser'
 export RABBIT_PASSWORD='rabbitpassword'
 export RABBIT_ERLANG_COOKIE='erlangcookie'
+export RABBITMQ_NODENAME='rabbit1'
+export RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.6
 
 export REDIS_HOST="db_redis"
 export REDIS_PORT=6379

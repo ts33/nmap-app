@@ -6,8 +6,8 @@ __pycache__/
 .idea/
 
 data/*/*
-owl/scans/*
-
 !data/.keep
 !data/*/.keep
+
+owl/scans/*
 !owl/scans/.keep
