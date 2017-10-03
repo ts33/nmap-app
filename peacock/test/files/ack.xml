@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.01 scan initiated Tue Oct  3 21:31:24 2017 as: nmap -F -sA -iL target_sites.txt -oX xmas -->
+<nmaprun scanner="nmap" args="nmap -F -sA -iL target_sites.txt -oX xmas" start="1507037484" startstr="Tue Oct  3 21:31:24 2017" version="7.01" xmloutputversion="1.04">
+<scaninfo type="ack" protocol="tcp" numservices="100" services="7,9,13,21-23,25-26,37,53,79-81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,443-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3000,3128,3306,3389,3986,4899,5000,5009,5051,5060,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1507037485" endtime="1507037492"><status state="up" reason="echo-reply" reason_ttl="52"/>
+<address addr="176.28.50.165" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testhtml5.vulnweb.com" type="user"/>
+<hostname name="rs202995.rs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="unfiltered" count="97">
+<extrareasons reason="resets" count="97"/>
+</extraports>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="646"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ldp" method="table" conf="3"/></port>
+</ports>
+<times srtt="323741" rttvar="29781" to="442865"/>
+</host>
+<host starttime="1507037485" endtime="1507037507"><status state="up" reason="echo-reply" reason_ttl="116"/>
+<address addr="5.175.17.140" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testasp.vulnweb.com" type="user"/>
+<hostname name="vs231689.vs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="100">
+<extrareasons reason="no-responses" count="100"/>
+</extraports>
+</ports>
+<times srtt="292654" rttvar="292654" to="1463270"/>
+</host>
+<host starttime="1507037486" endtime="1507037513"><status state="up" reason="timestamp-reply" reason_ttl="52"/>
+<address addr="176.28.50.165" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testphp.vulnweb.com" type="user"/>
+<hostname name="rs202995.rs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="unfiltered" count="97">
+<extrareasons reason="resets" count="97"/>
+</extraports>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="646"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ldp" method="table" conf="3"/></port>
+</ports>
+<times srtt="338371" rttvar="29212" to="455219"/>
+</host>
+<host starttime="1507037486" endtime="1507037531"><status state="up" reason="echo-reply" reason_ttl="116"/>
+<address addr="5.175.17.140" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testaspnet.vulnweb.com" type="user"/>
+<hostname name="vs231689.vs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="100">
+<extrareasons reason="no-responses" count="100"/>
+</extraports>
+</ports>
+<times srtt="360496" rttvar="360496" to="1802480"/>
+</host>
+<runstats><finished time="1507037531" timestr="Tue Oct  3 21:32:11 2017" elapsed="47.65" summary="Nmap done at Tue Oct  3 21:32:11 2017; 4 IP addresses (4 hosts up) scanned in 47.65 seconds" exit="success"/><hosts up="4" down="0" total="4"/>
+</runstats>
+</nmaprun>

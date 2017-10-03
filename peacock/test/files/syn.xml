@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.01 scan initiated Tue Oct  3 21:20:21 2017 as: nmap -F -sS -iL target_sites.txt -oX xmas -->
+<nmaprun scanner="nmap" args="nmap -F -sS -iL target_sites.txt -oX xmas" start="1507036821" startstr="Tue Oct  3 21:20:21 2017" version="7.01" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="100" services="7,9,13,21-23,25-26,37,53,79-81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,443-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3000,3128,3306,3389,3986,4899,5000,5009,5051,5060,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1507036823" endtime="1507036839"><status state="up" reason="echo-reply" reason_ttl="52"/>
+<address addr="176.28.50.165" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testhtml5.vulnweb.com" type="user"/>
+<hostname name="rs202995.rs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="85">
+<extrareasons reason="resets" count="85"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="smtp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="106"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="pop3pw" method="table" conf="3"/></port>
+<port protocol="tcp" portid="110"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="pop3" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="143"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="imap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="465"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="smtps" method="table" conf="3"/></port>
+<port protocol="tcp" portid="646"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ldp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="993"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="imaps" method="table" conf="3"/></port>
+<port protocol="tcp" portid="995"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="pop3s" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="https-alt" method="table" conf="3"/></port>
+</ports>
+<times srtt="330588" rttvar="41728" to="497500"/>
+</host>
+<host starttime="1507036823" endtime="1507036838"><status state="up" reason="echo-reply" reason_ttl="116"/>
+<address addr="5.175.17.140" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testasp.vulnweb.com" type="user"/>
+<hostname name="vs231689.vs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="98">
+<extrareasons reason="no-responses" count="98"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="116"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="116"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+</ports>
+<times srtt="308669" rttvar="45907" to="492297"/>
+</host>
+<host starttime="1507036824" endtime="1507036844"><status state="up" reason="echo-reply" reason_ttl="52"/>
+<address addr="176.28.50.165" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testphp.vulnweb.com" type="user"/>
+<hostname name="rs202995.rs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="85">
+<extrareasons reason="resets" count="85"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="smtp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="106"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="pop3pw" method="table" conf="3"/></port>
+<port protocol="tcp" portid="110"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="pop3" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="143"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="imap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="465"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="smtps" method="table" conf="3"/></port>
+<port protocol="tcp" portid="646"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ldp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="993"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="imaps" method="table" conf="3"/></port>
+<port protocol="tcp" portid="995"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="pop3s" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="open" reason="syn-ack" reason_ttl="52"/><service name="https-alt" method="table" conf="3"/></port>
+</ports>
+<times srtt="334367" rttvar="24279" to="431483"/>
+</host>
+<host starttime="1507036824" endtime="1507036846"><status state="up" reason="echo-reply" reason_ttl="116"/>
+<address addr="5.175.17.140" addrtype="ipv4"/>
+<hostnames>
+<hostname name="testaspnet.vulnweb.com" type="user"/>
+<hostname name="vs231689.vs.hosteurope.de" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="98">
+<extrareasons reason="no-responses" count="98"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="116"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="116"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+</ports>
+<times srtt="303799" rttvar="90688" to="666551"/>
+</host>
+<runstats><finished time="1507036846" timestr="Tue Oct  3 21:20:46 2017" elapsed="24.64" summary="Nmap done at Tue Oct  3 21:20:46 2017; 4 IP addresses (4 hosts up) scanned in 24.64 seconds" exit="success"/><hosts up="4" down="0" total="4"/>
+</runstats>
+</nmaprun>
