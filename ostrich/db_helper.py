@@ -57,15 +57,16 @@ class DbHelper:
         return r
 
     def _setup_postgres_db(self):
-        self._postgres_conn.query('CREATE TABLE IF NOT EXISTS scans (id serial primary key, content varchar)')
+        self._postgres_conn.query(
+            'CREATE TABLE IF NOT EXISTS scans (id serial primary key, scan_name varchar, content varchar)')
 
     def _setup_rabbit_queue(self):
         self._rabbit_conn.queue_declare(queue=RABBIT_QUEUE)
 
     # http://www.pygresql.org/contents/tutorial.html
-    def _save_to_postgres(self, content):
+    def _save_to_postgres(self, content, scan_name):
         print('saving to postgres')
-        self._postgres_conn.insert('scans', content=content)
+        self._postgres_conn.insert('scans', content=content, scan_name=scan_name)
 
     # https://www.rabbitmq.com/tutorials/tutorial-one-python.html
     def _save_to_rabbit(self, content):
@@ -84,8 +85,8 @@ class DbHelper:
     def _unix_timestamp():
         return str(int(time.time()))
 
-    def save_to_db(self, content, key=''):
-        self._save_to_postgres(content)
+    def save_to_db(self, content, key='', scan_name=''):
+        self._save_to_postgres(content, scan_name)
         self._save_to_rabbit(content)
         self._save_to_redis(content, key)
 

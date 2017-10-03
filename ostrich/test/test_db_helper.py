@@ -9,6 +9,7 @@ class TestDbHelper(unittest.TestCase):
     def setUp(self):
         self.db_helper = db_helper.DbHelper(host=utils.HOST)
         self.content = '<xml>some content</xml>'
+        self.scan_name = 'Xmas'
         self.open = True
 
     def tearDown(self):
@@ -32,9 +33,10 @@ class TestDbHelper(unittest.TestCase):
         # remove all records first
         utils.clean_up_postgres(db)
 
-        self.db_helper._save_to_postgres(self.content)
+        self.db_helper._save_to_postgres(self.content, self.scan_name)
         results = db.query('select * from scans').getresult()
-        self.assertEqual(results[0][1], self.content)
+        self.assertEqual(results[0][1], self.scan_name)
+        self.assertEqual(results[0][2], self.content)
 
         # clean up
         utils.clean_up_postgres(db)

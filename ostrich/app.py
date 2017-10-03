@@ -16,7 +16,8 @@ def add_entry():
     if json_data is not None:
         content = json_data['content']
         key = json_data.get('key', None)
-        get_db().save_to_db(content, key=key)
+        scan_name = json_data.get('scan_name', None)
+        get_db().save_to_db(content, key=key, scan_name=scan_name)
         return 'record added'
     else:
         return 'no data provided'

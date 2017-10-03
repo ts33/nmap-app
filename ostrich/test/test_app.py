@@ -10,6 +10,7 @@ class TestApp(unittest.TestCase):
     def setUp(self):
         self.db_helper = db_helper.DbHelper(host=utils.HOST)
         self.content = '<xml>some content</xml>'
+        self.scan_name = 'Xmas'
         self.base_url = f'http://{utils.HOST}:6001/'
 
     def test_health(self):
@@ -39,7 +40,8 @@ class TestApp(unittest.TestCase):
         utils.clean_up_postgres(pg_db)
 
         # trigger request
-        r = requests.post(self.base_url + 'add', json={'content': self.content, 'key': 'test'})
+        r = requests.post(self.base_url + 'add',
+                          json={'content': self.content, 'key': 'test', 'scan_name': self.scan_name})
         self.assertEqual(r.text, 'record added')
         self.assertEqual(r.status_code, 200)
 
@@ -50,7 +52,8 @@ class TestApp(unittest.TestCase):
         self.assertEqual(redis_db.get('test').decode('utf-8'), self.content)
         # check postgres
         results = pg_db.query('select * from scans').getresult()
-        self.assertEqual(results[0][1], self.content)
+        self.assertEqual(results[0][1], self.scan_name)
+        self.assertEqual(results[0][2], self.content)
 
         utils.clean_up_redis(redis_db)
         utils.clean_up_postgres(pg_db)
