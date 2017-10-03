@@ -2,6 +2,9 @@
 .py3env
 __pycache__/
 
+# node libraries
+peacock/node_modules/
+
 # IDE configuration
 .idea/
 

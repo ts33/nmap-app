@@ -8,14 +8,10 @@ docker swarm leave --force
 mkdir -p data/postgres/data
 
 # rebuild owl
-cd owl
-docker build -t nmap-app-owl .
+docker build -t nmap-app-owl ./owl
 
 # rebuild ostrich
-cd ../ostrich
-docker build -t nmap-app-ostrich .
-
-cd ../
+docker build -t nmap-app-ostrich ./ostrich
 
 # setup swarm and deploy stack
 docker swarm init
