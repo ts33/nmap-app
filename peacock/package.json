@@ -1,0 +1,21 @@
+{
+  "name": "peacock",
+  "version": "1.0.0",
+  "description": "a dashboard showing nmap scan results",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha -u tdd ./test/*_test.js"
+  },
+  "author": "ts33",
+  "license": "ISC",
+  "dependencies": {
+    "async": "2.5.0",
+    "pg": "7.3.0",
+    "underscore": "1.8.3",
+    "xml2js": "0.4.19"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "3.5.3"
+  }
+}
