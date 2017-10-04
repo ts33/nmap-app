@@ -13,6 +13,9 @@ docker build -t nmap-app-owl ./owl
 # rebuild ostrich
 docker build -t nmap-app-ostrich ./ostrich
 
+# rebuild peacock
+docker build -t nmap-app-peacock ./peacock
+
 # setup swarm and deploy stack
 docker swarm init
 . ./env_docker && docker stack deploy -c stack.yml nmap-app
