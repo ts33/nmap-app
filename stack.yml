@@ -76,3 +76,22 @@ services:
       OSTRICH_HOST: ${OSTRICH_HOST}
       OSTRICH_PORT: ${OSTRICH_PORT}
       OWL_TARGET_FILE: ${OWL_TARGET_FILE}
+
+  peacock:
+    image: nmap-app-peacock
+    ports:
+      - '${PEACOCK_PORT}:${PEACOCK_PORT}'
+    command: npm start
+    depends_on:
+      - db_pg
+      - db_redis
+      - db_rabbit
+      - ostrich
+      - owl
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PEACOCK_PORT: ${PEACOCK_PORT}
