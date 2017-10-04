@@ -14,3 +14,6 @@ data/*/*
 
 owl/scans/*
 !owl/scans/.keep
+
+peacock/data/*
+!peacock/data/.keep

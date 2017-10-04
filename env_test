@@ -26,4 +26,6 @@ export OWL_TARGET_FILE="target_sites.txt"
 export OSTRICH_HOST="127.0.0.1"
 export OSTRICH_PORT=6001
 
+export PEACOCK_PORT=3001
+
 export FLASK_APP=app.py
