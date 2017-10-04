@@ -28,11 +28,12 @@ function transposeScanData(scanData){
 
   for (var portGrouping of scanData){
     for (var portRecord of portGrouping){
+      uniqueIdentifier = `${portRecord.hostName}_${portRecord.portId}`
 
       // portId already exists
-      if (portRecord.portId in transposedData) {
+      if (uniqueIdentifier in transposedData) {
         // add the four columns state, reason, timestr and name if not empty
-        transposedElement = transposedData[portRecord.portId]
+        transposedElement = transposedData[uniqueIdentifier]
         transposedElement[[`${portRecord.scanType}_state`]] = portRecord.portState
         transposedElement[[`${portRecord.scanType}_reason`]] = portRecord.portReason
         transposedElement[[`${portRecord.scanType}_completed_time`]] = portRecord.completedTime
@@ -41,7 +42,7 @@ function transposeScanData(scanData){
           transposedElement['name'] = portRecord.portName
         }
 
-        transposedData[portRecord.portId] = transposedElement
+        transposedData[uniqueIdentifier] = transposedElement
 
       // portId doesnt exist
       } else {
@@ -54,7 +55,7 @@ function transposeScanData(scanData){
           [`${portRecord.scanType}_reason`]: portRecord.portReason,
           [`${portRecord.scanType}_completed_time`]: portRecord.completedTime
         }
-        transposedData[portRecord.portId] = transposedElement
+        transposedData[uniqueIdentifier] = transposedElement
       }
 
     }

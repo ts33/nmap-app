@@ -18,7 +18,7 @@ suite('Scan Parser', function() {
     allScanData = [ackScan, nullScan, synScan, xmasScan]
 
     outputData = scanParser.parseAllScans(allScanData, function(err, res){
-      assert.equal(res.length, 100);
+      assert.equal(res.length, 400);
       assert.deepEqual(res, expectedParsedResult.expectedScan);
       done();
     });
