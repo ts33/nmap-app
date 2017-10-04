@@ -22,8 +22,10 @@ function read(pool, callback) {
   pool.query(getLatestScanRecords, (err, res) => {
     if (err) {
       console.log(err.stack);
+      callback(err, null);
+    } else {
+      callback(null, extractScan(res.rows));
     }
-    callback(null, extractScan(res.rows));
   });
 
 }
