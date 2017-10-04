@@ -39,7 +39,7 @@ def loop_scan_and_post(scan_name, scan_cmd, scan_interval=60, ping_interval=10):
             time.sleep(ping_interval)
 
         print(f'ostrich is up... sending results for {scan_name}')
-        status_code = post_to_ostrich(results)
+        status_code = post_to_ostrich(scan_name, results)
         if status_code != 200:
             print(f'error sending results to ostrich for {scan_name}')
 
@@ -65,8 +65,8 @@ def generate_filename(scan_name):
     return 'scans/' + datetime.datetime.now().strftime(f'%Y%m%d%H%M%S_{scan_name}')
 
 
-def post_to_ostrich(content):
-    r = requests.post(ostrich_url() + '/add', json={'content': content})
+def post_to_ostrich(scan_name, content):
+    r = requests.post(ostrich_url() + '/add', json={'content': content, 'scan_name': scan_name})
     return r.status_code
 
 
