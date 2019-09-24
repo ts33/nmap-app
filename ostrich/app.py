@@ -35,3 +35,6 @@ def get_db():
     if db is None:
         db = g._db_helper = DbHelper()
     return db
+
+def dummy_method():
+    print('this is a dummy method')
